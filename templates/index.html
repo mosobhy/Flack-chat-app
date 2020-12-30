@@ -1,0 +1,83 @@
+
+{% extends 'layout.html' %}
+
+{% block main %}
+
+<div id="main_content" class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 col-sm-6">
+            <!-- here will be the chat rooms list -->
+            <!-- it will be displayed as an html table -->
+            <div id="chatroom-list" class="row">
+                <div id="chatroom-header" class="col-sm-12" style="padding: 0;">
+                    <h2>rooms list</h2>
+                </div>
+                <table id="rooms" class='col-sm-12'>
+                    <!-- i will make the whole td clickable by using data- attribute and perform some event listener -->
+                        <tr class="room">
+                            <td>room one</td>
+                        </tr>
+                        <tr class="room">
+                            <td>room one</td>
+                        </tr>
+                        <tr class="room">
+                            <td>room one</td>
+                        </tr>
+
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-8 col-sm-6">
+            <!-- here will be the selected room to view -->
+            <div id="active-room" class="row">
+                <div id="active-room-header" class="col-sm-12">
+                    <h2>active room titles</h2>
+                </div>
+                <div id="messages" class="col-sm-12">
+                    <ul id="message">
+                        <li>messages will be displayed here via sockets</li>
+                    </ul>
+                </div>
+                <div id="type-message" class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="type a messge here!" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-warning" type="button">Send!</button>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- this is the pop up form which will allow us to create a room -->
+
+
+<div id="room_form" class="bg-modal">
+	<div class="modal-contents">
+
+        <div data-close="room" class="close">+</div>
+        
+        <div  class="app-logo-form"><span>Create a Channel!</span></div>
+
+        <form id="create_room_form" action="{{ url_for('create_room') }}" method='POST'>
+            <input class="form" id='room_name' name="name" type="text" placeholder="Room Name" required autofocus>
+            <input class="form" id="room_description" name="description" type="text" placeholder="What For?" required>
+            <input class="form" id="room_tag" name="tag" type="text" placeholder="Tag" required>
+            
+            <button type="submit" class='btn-primary'>Create Room</button>
+            
+        </form>
+        
+        <div style="background-color:rgb(218, 105, 105); border-radius:3px ; opacity: 0.6; margin-top: 30px;">
+            <h4 id="room_error">
+
+            </h4>
+        </div>
+	</div>
+</div>
+
+
+{% endblock %}
+

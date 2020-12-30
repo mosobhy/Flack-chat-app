@@ -1,0 +1,156 @@
+#main_content {
+    box-sizing: border-box;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    background-color: rgb(218, 220, 224);
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+#main_content #chatroom-list {
+    background-color: honeydew;
+    margin: 10px;
+    /* border-right: 2px solid #fdc846; */
+    padding: 15px;
+}
+
+#main_content #chatroom-header {
+    text-transform: uppercase;
+    /* make a space beween the header and rooms */
+    margin-bottom: 10px;
+    height: 100px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: goldenrod;
+    border-radius: 5px;
+    color: white;
+
+}
+
+#main_content #chatroom-header h2 {
+    margin-top: 25px;
+}
+
+#main_content #rooms .room {
+    /* set space between each room */
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    height: 70px;
+    padding: 10px;
+    /* box-shadow: 1px 1px 5px 0.5px #888888; */
+    border-bottom: 1px solid rgb(174,180,183);
+
+}
+
+#main_content #rooms .room:hover {
+    border-left: 3px solid goldenrod;
+    border-right: 3px solid goldenrod;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#main_content #active-room {
+    background-color: honeydew;
+    margin: 10px;
+    padding: 15px;
+
+}
+
+#main_content #active-room #active-room-header {
+    text-transform: uppercase;
+    /* make a space beween the header and rooms */
+    margin-bottom: 10px;
+    height: 100px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: goldenrod;
+    border-radius: 5px;
+    color: white;
+
+}
+
+#main_content #active-room #active-room-header h2 {
+    margin-top: 25px;
+}
+
+/* messages part start */
+#main_content #active-room #messages{
+    margin: 10px auto 10px auto;
+    height: 400px;
+    background-color: white;
+    font-size: 16px;
+}
+/* messages part end */
+
+/* type messages part start */
+#main_content #active-room #type-message {
+    margin: 0;
+    
+}
+
+
+    /* the styling of the login and register forms */
+
+.bg-modal {
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-contents {
+    height: 400px;
+    width: 500px;
+    background-color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    border-radius: 4px;
+}
+
+input.form {
+    margin: 15px auto;
+    display: block;
+    width: 50%;
+    padding: 8px;
+    border: 1px solid gray;
+}
+
+div.close {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 42px;
+    color: #333;
+    transform: rotate(45deg);
+    cursor: pointer;
+}
+
+div.close:hover {
+    color: maroon;
+}
+
+/* style the div contin the logo */
+.app-logo-form {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.app-logo-form span {
+    font-size: 20px;
+    font-weight: bold;
+    color: goldenrod;
+
+}    
+
