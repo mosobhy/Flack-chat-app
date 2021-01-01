@@ -28,6 +28,7 @@
   <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
 
   <!-- connect the socekt server and controller -->
+  <script src="{{ url_for('static', filename='js/homepage.js') }}"></script>
   <script src="{{ url_for('static', filename='js/index.js') }}"></script>
   <script src="{{ url_for('static', filename='js/socket.js') }}"></script>
 
@@ -35,9 +36,6 @@
 
   <!-- include the handlebars library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-
-  <!-- include the handle bars template for room rows -->
-  <script id="template" type="text/x-handlebars-template" src="{{ url_for('static', filename='js/template.js') }}"></script>
   
   {% block style %}{% endblock %}
 

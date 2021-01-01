@@ -163,8 +163,8 @@
         <div  class="app-logo-form"><span>Login</span></div>
 
         <form id="login_form_data" action="{{ url_for('login') }}" method='POST'>
-            <input class="form" id="login_display_name" name="display_name" type="text" placeholder="Display Name" required>
-			<input class="form" id="login_password" name="password" type="password" placeholder="Password" required>
+            <input class="form" id="login_display_name" name="display_name" type="text" placeholder="Display Name" required autofocus>
+			      <input class="form" id="login_password" name="password" type="password" placeholder="Password" required>
             <button type="submit" class='btn-primary'>Login</button>
             
         </form>
@@ -184,7 +184,7 @@
         <div  class="app-logo-form"><span>Register</span></div>
 
         <form id="register_form_" action="{{ url_for('register') }}" method='POST'>
-            <input class="form" id='name' name="name" type="text" placeholder="Name" required>
+            <input class="form" id='name' name="name" type="text" placeholder="Name" required autofocus>
             <input class="form" id="register_display_name" name="display_name" type="text" placeholder="Display Name" required>
             <input class="form" id="gender" name="gender" type="text" placeholder="Gender" required>
             <input class="form" id="register_password" name="password" type="password" placeholder="Password" required>

@@ -37,11 +37,6 @@ socketio = SocketIO(app)
 usersDB = []      # [ User ]
 roomsDB = []      # [ Room ]
 
-# this counter will count the lenght of the usersDB inorder to create
-# a deteminstic id for each user and ensure that users are sorted by id
-# NOTE: to increment the counter after using it
-# i have used session to make a thread safe counter var to avoid race conditions
-# session['counter'] = 1
 
 def isUniqueRoom(room):
     """ This function is going to check if the room is not exist earlier in the db """
