@@ -71,7 +71,23 @@ def homepage():
 @app.route('/')
 @login_required
 def index():
-    return render_template('index.html')    # this will be replaced with the homepage soon
+    """ This function should export the whole room object to be viewed in index.html """
+    """ Send the user's data to be rendered in the header of the active room """
+    """ Return json object of all rooms data """
+    
+    # make the josn object of rooms
+    creaeted_rooms_names = []
+    for room in roomsDB:
+        creaeted_rooms_names.append(room.getRoomName())
+
+    # return the user logged in data
+    user_data = {}
+    for user in usersDB:
+        if user.getDisplayName() == session['display_name'] and user.getUserId() == session['id']:
+            user_data['name'] = user.getName()
+            user_data['display_name'] = user.getDisplayName()
+
+    return render_template('index.html', rooms=creaeted_rooms_names, user_data=user_data)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -189,6 +205,7 @@ def create_room():
 
             json_obj['error'] = None
             json_obj['success'] = True
+            json_obj['user'] = session['display_name']      # to use in notification
 
         else:
 
@@ -201,6 +218,32 @@ def create_room():
 
     else:
         return redirect('/')
+
+@app.route('/get-room-data/<string:room_name>', methods=['POST'])
+@login_required
+def get_room_data(room_name):
+    """ This function should return a json object of a particular room """
+
+    print('from fetching the room data:' + room_name)
+    
+    # iterate over the RoomsDB and check for the room name
+    json_obj = {}
+    for room in roomsDB:
+        if room.getRoomName() == room_name:
+            # room has been found
+            json_obj['success'] = True
+            json_obj['name'] = room.getRoomName()
+            json_obj['user'] = room.getRoomUser()
+            json_obj['description'] = room.getRoomDescription()
+            json_obj['tag'] = room.getRoomTag()
+
+            print('successfully found the room data of: ' + room_name)
+
+        else:
+            print('didnt found the fukcing room ')
+            json_obj['success'] = False   # room not found
+
+    return jsonify(json_obj)
 
 
 @app.route('/logout')

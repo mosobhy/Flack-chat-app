@@ -24,8 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // alter the display property of the form to be flex
                 document.querySelector('#room_form').style.display = 'flex';
-            }
-
+            } 
         };
 
     });
@@ -45,11 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 document.querySelector('#login_form').style.display = 'none';
 
-            } else {
+            } else if(which_form == 'room') {
 
                 // hide the create room form
                 document.querySelector('#room_form').style.display = 'none';
 
+            } else {
+
+                document.querySelector('#room_data').style.display = 'none';
             }
             
         }

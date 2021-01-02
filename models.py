@@ -16,6 +16,10 @@ class User:
         self.gender = gender
         self.password = password
 
+    def getName(self):
+        """ This method should return the user name """
+        return self.name
+
     def getUserId(self):
         ''' This method will return the user id '''
         return self.Id
@@ -60,6 +64,18 @@ class Room:
     def getRoomName(self):
         """ This method should return the room name """
         return self.name
+
+    def getRoomUser(self):
+        """ This method should return the user who created this room """
+        return self.user
+
+    def getRoomDescription(self):
+        """ This method should return the description of this room """
+        return self.description
+
+    def getRoomTag(self):
+        """ This method should return the tag of this room """
+        return self.tag
 
     def to_json(self):
         """ This method will convert the room object to a json object """

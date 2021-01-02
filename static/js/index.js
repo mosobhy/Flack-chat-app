@@ -28,10 +28,15 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (response.success) {
 
                 // room created successfully... so view it for all users
-                const template = Handlebars.compile("<tr class='room'><td>{{value}}</td></tr>");
+                const template = Handlebars.compile(`<tr class='room'>
+                                                        <td>
+                                                            <i data-name='{{for_jinja}}' class='fas fa-question-circle info_mark'></i>
+                                                            {{value}}
+                                                        </td>
+                                                    </tr>`);
 
                 // pass the room name to the template to view {{ note, we use the template as we use functions}}
-                const content = template({'value': room_name});
+                const content = template({'value': room_name, 'for_jinja': '{{ room }}'});
                 
                 console.log(room_name);
                 // append this content to its table parent
@@ -44,6 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('#room_name').value = '';
                 document.querySelector('#room_description').value = '';
                 document.querySelector('#room_tag').value = '';
+                document.querySelector('#room_error').innerHTML = '';
+
+                // call the notifying function which will notify all the logged users with the
+                // newly created room
+                notifying();
 
             }
 
@@ -59,5 +69,48 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
     };
 
+
+    // handle the information mark when clicked is should display the room details
+    document.querySelectorAll('.info_mark').forEach(function (mark) {
+
+        mark.onclick = function() {
+
+            const room_name = this.dataset.name;
+            console.log(room_name);
+    
+            // make an ajax request to get-room-data route in server to fetch the room data
+            const request = new XMLHttpRequest();
+            request.open('post', `/get-room-data/${room_name}`);
+    
+            // handle the response
+            request.onload = () => {
+    
+                const response = JSON.parse(request.responseText);
+    
+                if (response.success) {
+    
+                    // display the data
+                    console.log('successfully retrieved room dta');
+                    console.log(response);
+    
+                    // alter the display property of some template and pass the data to it
+                    document.querySelector('#room_tag').innerHTML = response.tag;
+                    document.querySelector('#room_name').innerHTML = response.name;
+                    document.querySelector('#room_description').innerHTML = response.description;
+                    document.querySelector('#room_user').innerHTML = response.user;
+    
+                    // display the model
+                    document.querySelector('#room_data').style.display = 'flex';
+                    
+                } else {
+    
+                    console.log('An error has been occured when fetching room data from server');
+                }
+            };
+    
+            request.send();
+            return false;
+        }
+    });
 
 });

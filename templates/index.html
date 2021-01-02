@@ -4,7 +4,19 @@
 {% block main %}
 
 <div id="main_content" class="container-fluid">
+
     <div class="row">
+
+        <div class="col-sm-12 user-data">
+            <div class="col-sm-12 user-name">
+                <h2>{{ user_data['name'] }}</h2>
+            </div>
+            <div class="col-sm-12 user-display-name">
+                <h5>@{{ user_data['display_name'] }}</h5>
+            </div>
+            <button data-view="room" id="create_room_button" class="btn-primary view_control">Create Room</button>
+        </div>
+
         <div class="col-md-4 col-sm-6">
             <!-- here will be the chat rooms list -->
             <!-- it will be displayed as an html table -->
@@ -14,16 +26,16 @@
                 </div>
                 <table id="rooms" class='col-sm-12'>
                     <!-- i will make the whole td clickable by using data- attribute and perform some event listener -->
-                        <tr class="room">
-                            <td>room one</td>
-                        </tr>
-                        <tr class="room">
-                            <td>room one</td>
-                        </tr>
-                        <tr class="room">
-                            <td>room one</td>
-                        </tr>
-
+                    <tbody>
+                        {% for room in rooms %}
+                            <tr class="room">
+                                <td>
+                                    <i data-name="{{ room }}" class="fas fa-question-circle info_mark"></i>
+                                    {{ room }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -36,6 +48,29 @@
                 </div>
                 <div id="messages" class="col-sm-12">
                     <ul id="message">
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
+                        <li>messages will be displayed here via sockets</li>
                         <li>messages will be displayed here via sockets</li>
                     </ul>
                 </div>
@@ -76,6 +111,24 @@
             </h4>
         </div>
 	</div>
+</div>
+
+<div id="room_data" class="bg-modal">
+    <div class="modal-contents">
+
+        <div data-close="room-data" class="close">+</div>
+        <!-- here will be some text areas for the veiw -->
+
+        <div class="card border-success mb-3" style="max-width: 18rem;">
+            <div id="room_tag" class="card-header bg-transparent border-success">#</div>
+            <div class="card-body text-success">
+              <h5 id="room_name" class="card-title"></h5>
+              <p id="room_description" class="card-text"></p>
+            </div>
+            <div id="room_user" class="card-footer bg-transparent border-success">@</div>
+          </div>
+
+    </div>
 </div>
 
 

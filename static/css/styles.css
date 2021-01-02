@@ -1,20 +1,51 @@
 #main_content {
     box-sizing: border-box;
     margin-top: 30px;
-    margin-bottom: 30px;
 
-    background-color: rgb(218, 220, 224);
+    /* background-color: rgb(218, 220, 224); */
     border-radius: 5px;
     padding-top: 10px;
     padding-bottom: 10px;
 
 }
 
+#main_content .user-data {
+
+    background-color: honeydew;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+#main_content button {
+    /* float: right; */
+    margin: 10px auto 10px auto;
+}
+
 #main_content #chatroom-list {
+    clear: both;
     background-color: honeydew;
     margin: 10px;
+    margin-top: 0;
     /* border-right: 2px solid #fdc846; */
-    padding: 15px;
+    /* padding: 15px; */
+}
+
+#main_content #chatroom-list table tbody {
+
+    height: 400px;
+    overflow: auto;
+
+}
+
+#main_content #chatroom-list table tbody .info_mark {
+    margin: 0 90% 0 3%;
+}
+
+#main_content #chatroom-list table tbody .info_mark:hover {
+
+    color: goldenrod;
 }
 
 #main_content #chatroom-header {
@@ -29,6 +60,12 @@
     border-radius: 5px;
     color: white;
 
+}
+
+#main_content #active-room #messages {
+
+    height: 400px;
+    overflow: auto;
 }
 
 #main_content #chatroom-header h2 {
@@ -58,7 +95,8 @@
 #main_content #active-room {
     background-color: honeydew;
     margin: 10px;
-    padding: 15px;
+    margin-top: 0;
+    /* padding: 15px; */
 
 }
 
@@ -92,7 +130,6 @@
 /* type messages part start */
 #main_content #active-room #type-message {
     margin: 0;
-    
 }
 
 
