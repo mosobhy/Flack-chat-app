@@ -1,4 +1,5 @@
 import os
+import json
 from copy import copy
 from models import User, Room, Message
 from helpers import login_required, userIdGenerator
@@ -219,6 +220,7 @@ def create_room():
     else:
         return redirect('/')
 
+
 @app.route('/get-room-data/<string:room_name>', methods=['POST'])
 @login_required
 def get_room_data(room_name):
@@ -236,8 +238,8 @@ def get_room_data(room_name):
             json_obj['user'] = room.getRoomUser()
             json_obj['description'] = room.getRoomDescription()
             json_obj['tag'] = room.getRoomTag()
-
             print('successfully found the room data of: ' + room_name)
+            break
 
         else:
             print('didnt found the fukcing room ')

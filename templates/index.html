@@ -24,9 +24,9 @@
                 <div id="chatroom-header" class="col-sm-12" style="padding: 0;">
                     <h2>rooms list</h2>
                 </div>
-                <table id="rooms" class='col-sm-12'>
+                <table class='col-sm-12'>
                     <!-- i will make the whole td clickable by using data- attribute and perform some event listener -->
-                    <tbody>
+                    <tbody id="rooms">
                         {% for room in rooms %}
                             <tr class="room">
                                 <td>
@@ -119,13 +119,21 @@
         <div data-close="room-data" class="close">+</div>
         <!-- here will be some text areas for the veiw -->
 
-        <div class="card border-success mb-3" style="max-width: 18rem;">
-            <div id="room_tag" class="card-header bg-transparent border-success">#</div>
-            <div class="card-body text-success">
-              <h5 id="room_name" class="card-title"></h5>
-              <p id="room_description" class="card-text"></p>
+        <div class="card border-warning mb-3"
+        style="
+        max-width: 18rem;
+        margin: 15px auto;
+        margin-top: 50px;
+        display: block;
+        width: 100%;
+        padding: 8px;
+        ">
+            <div id="room_tag_fill" class="card-header bg-transparent border-warning"></div>
+            <div class="card-body text-warning">
+              <h5 id="room_name_fill" class="card-title"></h5>
+              <p id="room_description_fill" class="card-text"></p>
             </div>
-            <div id="room_user" class="card-footer bg-transparent border-success">@</div>
+            <div id="room_user_fill" class="card-footer bg-transparent border-warning"></div>
           </div>
 
     </div>

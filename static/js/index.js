@@ -30,15 +30,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 // room created successfully... so view it for all users
                 const template = Handlebars.compile(`<tr class='room'>
                                                         <td>
-                                                            <i data-name='{{for_jinja}}' class='fas fa-question-circle info_mark'></i>
+                                                            <i data-name='{{value}}' class='fas fa-question-circle info_mark'></i>
                                                             {{value}}
                                                         </td>
                                                     </tr>`);
 
                 // pass the room name to the template to view {{ note, we use the template as we use functions}}
-                const content = template({'value': room_name, 'for_jinja': '{{ room }}'});
+                const content = template({'value': room_name});
                 
-                console.log(room_name);
+                console.log('from the create a room ' + room_name);
                 // append this content to its table parent
                 document.querySelector('#rooms').innerHTML += content;
 
@@ -52,9 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('#room_error').innerHTML = '';
 
                 // call the notifying function which will notify all the logged users with the
-                // newly created room
                 notifying();
 
+                // refreash the page
+                location.reload();
             }
 
         };
@@ -94,10 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log(response);
     
                     // alter the display property of some template and pass the data to it
-                    document.querySelector('#room_tag').innerHTML = response.tag;
-                    document.querySelector('#room_name').innerHTML = response.name;
-                    document.querySelector('#room_description').innerHTML = response.description;
-                    document.querySelector('#room_user').innerHTML = response.user;
+                    document.querySelector('#room_tag_fill').innerHTML = '#' + response.tag;
+                    document.querySelector('#room_name_fill').innerHTML = response.name;
+                    document.querySelector('#room_description_fill').innerHTML = response.description;
+                    document.querySelector('#room_user_fill').innerHTML = 'Room Created by ' +'@' + response.user;
     
                     // display the model
                     document.querySelector('#room_data').style.display = 'flex';
@@ -114,3 +115,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+// outside the dom event listener
+
+// this funciton will notify the whole logged users with the newly created room
+function notifying () {
+    
+}
+
+/*
+function send_room_to_server (data) {
+
+    const request = new XMLHttpRequest();
+    request.open('post', '/put-rooom-in-db');
+    request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+
+    console.log('from send_new-room to server ' + data);
+
+    request.onload = () => {
+
+        const response = JSON.parse(request.responseText);
+
+        if (response.error) {
+
+            console.log('An error has occured when contacting with /put-room-in-db ');
+            return;
+        }
+    };
+
+    request.send(data);
+    return false;
+}
+*/
