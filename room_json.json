@@ -1,0 +1,26 @@
+
+
+room = {
+
+    user: "mohamed",
+    name: "room_name",
+    description: "something about the room",
+    tag: "a tag descrips the room speciality in one word",
+    messages: [
+                {
+                    user: "mohamed",
+                    date: "12-10-2021",
+                    text: "the actual message the user has sent"
+                }, 
+                {
+                    user: "ahmed",
+                    date: "2-3-2020",
+                    text: "the actual text of the message has been sent"
+                }, 
+                {
+                    another message object will go here
+                }
+            ]
+}
+
+room.messages[1].text   ==> will return the text of the second message sent to this room

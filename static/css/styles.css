@@ -17,6 +17,24 @@
     text-align: center;
 }
 
+#main_content .notification {
+    padding: 10px;
+    background-color: rgba(0,0,0,0.54);
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+    border-radius: 4px;
+    font-family: Helvetica, Arial, sans-serif;
+    transform: translateX(-400px);
+    transition: transform .5s;
+}
+
+
+#main_content .notification.show {
+    transform: translateX(0px);
+}
+  
+
 
 #main_content button {
     /* float: right; */
@@ -122,14 +140,64 @@
 #main_content #active-room #messages{
     margin: 10px auto 10px auto;
     height: 400px;
-    background-color: white;
+    background-color: honeydew;
     font-size: 16px;
 }
+
+#main_content #active-room .no-selected-room {
+
+    color: gray;
+    font-weight: bold;
+    font-size: 3.5vw;
+    opacity: 0.3;
+    text-align: center;
+}
+
+#main_content #active-room .no-selected-room .no-selected-room-symb {
+
+    margin: 50px auto 20px auto;
+}
+
+#main_content #active-room .no-selected-room .no-selected-room-symb img {
+    
+    width: 100px;
+    height: 100px;
+}
+
+
 /* messages part end */
+
+/* Messages */
+
+#main_content #active-room #messages .message {
+    color: #000;
+    clear: both;
+    line-height: 18px;
+    font-size: 15px;
+    padding: 8px;
+    position: relative;
+    margin: 8px 0;
+    max-width: 85%;
+    word-wrap: break-word;
+}
+
+#main_content #active-room #messages .message.received {
+    background: #fff;
+    border-radius: 0px 5px 5px 5px;
+    float: left;
+}
+
+#main_content #active-room #messages .message.sent {
+    background: #e1ffc7;
+    border-radius: 5px 0px 5px 5px;
+    float: right;
+}
+
 
 /* type messages part start */
 #main_content #active-room #type-message {
     margin: 0;
+    display: none;
 }
 
 

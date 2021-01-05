@@ -38,16 +38,20 @@ class User:
 
 
 class Message:
-    def __init__(self, user, room, date, text):
+    def __init__(self, user, date, text):
         self.user = user
-        self.room = room
         self.date = date
         self.text = text        
 
     def to_json(self):
         ''' This method will convert a message object to a json object '''
+        """ This method should be inovked before appending the message object to room """
+        """ This will be handled in the socket part """
         return json.dumps(self, indent=4, default=lambda o: o.__dict__)
 
+    def to_dict(self):
+        """ This method will return a message object as a dictionary """
+        return self.__dict__
 
 class Room:
     def __init__(self, name, user, description, tag):
@@ -60,6 +64,21 @@ class Room:
         self.description = description
         self.tag = tag
         self.messages = []  # this will be storing at maximux 100 message object
+
+    def enqueueMessage(self, message):
+        """ 
+            This method should enqueue a message object into the messages queue 
+            and if the length has been exceeded, it will dequeue the first message entered and
+            then enqueue the new message
+        """
+
+        if len(self.messages) <= 100:
+            self.messages.insert(0, message)
+
+        else:
+            # dequeue the first message enterted in the queue and then insert the current message at index 0
+            self.messages.remove(len(self.messages)-1)
+            self.messages.insert(0, message)
 
     def getRoomName(self):
         """ This method should return the room name """
@@ -80,3 +99,7 @@ class Room:
     def to_json(self):
         """ This method will convert the room object to a json object """
         return json.dumps(self, indent=4, default=lambda o: o.__dict__)
+    
+    def to_dict(self):
+        ''' This method will return a dictionary of all the room attribute '''
+        return self.__dict__

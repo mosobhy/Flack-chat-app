@@ -1,5 +1,6 @@
 import os
 import json
+from datetime import datetime
 from copy import copy
 from models import User, Room, Message
 from helpers import login_required, userIdGenerator
@@ -68,6 +69,23 @@ def isUniqueUser(user):
 def homepage():
     return render_template('homepage.html')
 
+
+# now the socket part
+@socketio.on('submit message')
+def record_message(data):
+    """ This is going to record the message in db and view it """
+
+    # create message object and append it in the room
+    message = Message(data['user'], str(datetime.now()), data['message'])
+
+    # get the room on which we are going to append this message
+    for room in roomsDB:
+        if room.getRoomName() == data['room']:
+            room.enqueueMessage(message.to_dict())
+            print(room.to_dict())
+            break
+    
+    emit('message submitted', data)
 
 @app.route('/')
 @login_required
@@ -246,6 +264,28 @@ def get_room_data(room_name):
             json_obj['success'] = False   # room not found
 
     return jsonify(json_obj)
+
+
+@app.route('/get-room-data-mes/<string:room_name>', methods=['POST'])
+@login_required
+def get_room_data_with_messages(room_name):
+    """ This function takes a room name and return the room object of this name as json """
+        
+    # iterate over the RoomsDB and check for the room name
+    for room in roomsDB:
+        if room.getRoomName() == room_name:
+            # room has been found
+            # merge the two dicts and return them to ajax
+            return jsonify({**room.to_dict(), **{'logged_user': session['display_name']}})
+
+    return jsonify({'error': True})
+
+
+@app.route('/who-am-i', methods=['POST'])
+@login_required
+def whoAmI():
+    """ This function should return a json object with the loggeed user in session """
+    return jsonify({'user': session['display_name']})
 
 
 @app.route('/logout')

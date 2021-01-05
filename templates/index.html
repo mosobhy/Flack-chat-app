@@ -14,6 +14,10 @@
             <div class="col-sm-12 user-display-name">
                 <h5>@{{ user_data['display_name'] }}</h5>
             </div>
+
+            <div id="notifiying" class="notification">
+            </div>
+
             <button data-view="room" id="create_room_button" class="btn-primary view_control">Create Room</button>
         </div>
 
@@ -28,9 +32,11 @@
                     <!-- i will make the whole td clickable by using data- attribute and perform some event listener -->
                     <tbody id="rooms">
                         {% for room in rooms %}
-                            <tr class="room">
+                            <th>
+                                <i data-name="{{ room }}" class="fas fa-question-circle info_mark"></i>
+                            </th>
+                            <tr data-name="{{ room }}" class="room">
                                 <td>
-                                    <i data-name="{{ room }}" class="fas fa-question-circle info_mark"></i>
                                     {{ room }}
                                 </td>
                             </tr>
@@ -47,37 +53,17 @@
                     <h2>active room titles</h2>
                 </div>
                 <div id="messages" class="col-sm-12">
-                    <ul id="message">
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                        <li>messages will be displayed here via sockets</li>
-                    </ul>
+                    <div class="no-selected-room">
+                        <div class="no-selected-room-symb">
+                            <img src="{{ url_for('static', filename='img/command-button.png') }}" alt="" class="src">
+                        </div>    
+                        Select a Room to start Chatting!
+                    </div>
                 </div>
                 <div id="type-message" class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="type a messge here!" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <input id="message-to-send" type="text" class="form-control" placeholder="type a messge here!" aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                      <button class="btn btn-outline-warning" type="button">Send!</button>
+                      <button id="send-button" class="btn btn-outline-warning" type="button">Send!</button>
                     </div>
                   </div>
             </div>
