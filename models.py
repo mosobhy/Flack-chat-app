@@ -102,4 +102,8 @@ class Room:
     
     def to_dict(self):
         ''' This method will return a dictionary of all the room attribute '''
+        ''' This function should return the room messages sorted by date ascdently '''
+        # sorting the messages
+        self.messages.sort(key=lambda i: i['date'])
+
         return self.__dict__

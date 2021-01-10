@@ -82,10 +82,11 @@ def record_message(data):
     for room in roomsDB:
         if room.getRoomName() == data['room']:
             room.enqueueMessage(message.to_dict())
-            print(room.to_dict())
             break
-    
-    emit('message submitted', data)
+    # assign the logged user back
+    data['logged_user'] = session['display_name']
+
+    emit('message submitted', data, broadcast=True)
 
 @app.route('/')
 @login_required
